@@ -1,0 +1,13 @@
+{
+  "name": "vinurajd-skills",
+  "owner": {
+    "name": "Vinuraj Devaraj"
+  },
+  "plugins": [
+    {
+      "name": "semantic-layer-contract-checker",
+      "source": "./",
+      "description": "Audit a semantic-layer project (dbt manifest or PromptQL / Hasura DDN metadata) against the ten-requirement machine-consumption contract, with a scorecard in the contract's four-value vocabulary."
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+<style>
+  * { box-sizing: border-box; }
+  .fw { font-family: inherit; color: var(--hatch-widget-text); max-width: 860px; margin: 0 auto; padding: 4px 2px 10px; }
+  .fw h1 { font-size: 21px; margin: 2px 0 2px; letter-spacing: .2px; }
+  .fw .sub { color: var(--hatch-widget-muted); font-size: 13px; margin: 0 0 4px; }
+  .fw .byline { color: var(--hatch-widget-muted); font-size: 12px; margin: 0 0 14px; }
+  .fw h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--hatch-widget-muted); margin: 18px 0 8px; }
+  .flow { display: flex; flex-wrap: wrap; align-items: stretch; gap: 6px; }
+  .stage { flex: 1 1 140px; background: var(--hatch-widget-surface); border: 1px solid var(--hatch-widget-border); border-radius: 10px; padding: 9px 10px; }
+  .stage b { display: block; font-size: 13px; margin-bottom: 3px; }
+  .stage span { font-size: 12px; color: var(--hatch-widget-muted); line-height: 1.45; display: block; }
+  .arrow { align-self: center; color: var(--hatch-widget-accent); font-size: 15px; padding: 0 1px; }
+  .fams { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 8px; }
+  .fam { background: var(--hatch-widget-surface); border: 1px solid var(--hatch-widget-border); border-radius: 10px; padding: 9px 11px; }
+  .fam b { font-size: 12.5px; display: block; margin-bottom: 5px; }
+  .fam div { font-size: 12px; line-height: 1.55; color: var(--hatch-widget-text); }
+  .fam div span { color: var(--hatch-widget-muted); }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  th, td { text-align: left; padding: 6px 7px; border-bottom: 1px solid var(--hatch-widget-border); vertical-align: top; }
+  th { color: var(--hatch-widget-muted); font-weight: 600; font-size: 12px; }
+  .chip { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+  .s { background: rgba(34,150,80,.16); color: #2e9e5b; }
+  .r { background: rgba(210,150,30,.18); color: #b9821e; }
+  .n { background: rgba(200,70,60,.14); color: #c14b41; }
+  .a { background: transparent; border: 1px solid var(--hatch-widget-border); color: var(--hatch-widget-muted); }
+  .note { font-size: 12px; color: var(--hatch-widget-muted); margin-top: 7px; line-height: 1.5; }
+  .fit { background: var(--hatch-widget-surface-muted); border: 1px solid var(--hatch-widget-border); border-radius: 10px; padding: 10px 12px; font-size: 12.5px; line-height: 1.6; }
+  .fit b { color: var(--hatch-widget-accent); }
+  .foot { margin-top: 16px; font-size: 12px; color: var(--hatch-widget-muted); border-top: 1px solid var(--hatch-widget-border); padding-top: 8px; }
+</style>
+<div class="fw">
+  <h1>Semantic Layer Contract Checker</h1>
+  <p class="sub">Framework mock-up: the machine-consumption contract, turned into a tool a team can run on its own semantic layer.</p>
+  <p class="byline">Framework from &ldquo;The Machine-Consumption Contract of Business Intelligence&rdquo; &middot; Created by Vinuraj Devaraj, Independent Researcher</p>
+
+  <h2>How it works</h2>
+  <div class="flow">
+    <div class="stage"><b>1. Adapters</b><span>dbt manifest.json<br>PromptQL / Hasura DDN metadata<br>Cube and LookML next</span></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><b>2. Normalized model</b><span>Metrics, dimensions, entities, and reviewed context entries in one shape, whatever the platform</span></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><b>3. Contract engine</b><span>R1 to R10 scored under the paper&rsquo;s coding rules, every cell tied to its deciding evidence</span></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><b>4. Scorecard</b><span>Markdown, HTML, and JSON reports, plus a CI exit code for pipeline use</span></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><b>5. Distribution</b><span>PyPI package<br>GitHub Marketplace Action<br>MCP server &middot; dbt Hub package</span></div>
+  </div>
+
+  <h2>The ten requirements</h2>
+  <div class="fams">
+    <div class="fam"><b>Discovery</b>
+      <div>R1 &middot; Can a program enumerate the definitions?<br>R2 &middot; Are aggregation, grain, slicing dimensions, and time behaviour declared?</div></div>
+    <div class="fam"><b>Trust</b>
+      <div>R3 &middot; Are provenance and lineage exposed?<br>R4 &middot; Does freshness travel where the consumer reads it?<br>R6 &middot; Is certification machine-visible?</div></div>
+    <div class="fam"><b>Enforcement and exchange</b>
+      <div>R5 &middot; Is access enforced at query time for the caller&rsquo;s own identity?<br>R7 &middot; Does the result carry units, grain, and caveats?<br>R8 &middot; Are invalid requests rejected in structured form?</div></div>
+    <div class="fam"><b>Identity and lifecycle</b>
+      <div>R9 &middot; Are versioning and deprecation signalled in pollable form?<br>R10 &middot; Does metric identity survive a rename?</div></div>
+  </div>
+
+  <h2>Sample scorecard</h2>
+  <table>
+    <tr><th style="width:34%">Requirement</th><th>Sample dbt project</th><th>Sample PromptQL project</th></tr>
+    <tr><td>R1 Enumerability</td><td><span class="chip s">Supported</span></td><td><span class="chip s">Supported</span></td></tr>
+    <tr><td>R2 Declared semantics</td><td><span class="chip r">Reduced</span></td><td><span class="chip r">Reduced</span></td></tr>
+    <tr><td>R3 Provenance and lineage</td><td><span class="chip s">Supported</span></td><td><span class="chip r">Reduced</span></td></tr>
+    <tr><td>R4 Freshness</td><td><span class="chip r">Reduced</span></td><td><span class="chip n">Not documented</span></td></tr>
+    <tr><td>R5 Query-time access control</td><td><span class="chip r">Reduced</span></td><td><span class="chip r">Reduced</span></td></tr>
+    <tr><td>R6 Certification</td><td><span class="chip r">Reduced</span></td><td><span class="chip r">Reduced</span></td></tr>
+    <tr><td>R7 Result contract</td><td><span class="chip r">Reduced</span></td><td><span class="chip n">Not documented</span></td></tr>
+    <tr><td>R8 Structured rejection</td><td><span class="chip a">Not assessable</span></td><td><span class="chip a">Not assessable</span></td></tr>
+    <tr><td>R9 Deprecation signal</td><td><span class="chip r">Reduced</span></td><td><span class="chip n">Not documented</span></td></tr>
+    <tr><td>R10 Stable identity</td><td><span class="chip r">Reduced</span></td><td><span class="chip r">Reduced</span></td></tr>
+  </table>
+  <p class="note">Real v1 proof runs. dbt sample (3 metrics, 3 models, 2 sources): 2 supported, 7 reduced, 0 not documented, 1 not assessable. PromptQL sample (2 models, 1 command, 3 reviewed context entries): 1 supported, 5 reduced, 3 not documented, 1 not assessable. On the PromptQL sample the coverage statement sub-check inside R7 reads declared, from its reviewed context, even though the full result contract is not documented. R8 is not assessable on both, by design: structured rejection is runtime behaviour that project files cannot evidence.</p>
+
+  <h2>Why PromptQL fits the framework</h2>
+  <div class="fit">
+    PromptQL&rsquo;s shared context is reviewed business definitions and assumptions saved for agents to apply. In contract terms, that is declared semantics with a review trail: <b>R2</b> evidence, <b>R3</b> provenance, and the closest thing in the field to <b>R6</b> certification. Its metadata permissions speak to <b>R5</b>. And the coverage question that opened the conversation, whether an answer states the population it represents, is carried in the checker as a named sub-check of <b>R7</b>, the coverage statement.
+  </div>
+
+  <p class="foot">Status: v1 built and verified locally (21 tests passing, both sample scorecards generated). Public launch follows the NTCS resubmission, so the paper and the tool can reference each other.</p>
+</div>

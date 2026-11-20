@@ -1,0 +1,29 @@
+# Reviewed shared context: business definitions and assumptions the team
+# has reviewed and saved for machine consumers (PromptQL shared context).
+kind: BusinessDefinition
+version: v1
+definition:
+  name: revenue
+  reviewed: true
+  text: >-
+    Revenue is the sum of order totals for completed orders, net of
+    refunds. Draft and cancelled orders never count as revenue.
+---
+kind: BusinessDefinition
+version: v1
+definition:
+  name: active customer
+  reviewed: true
+  text: >-
+    An active customer is a customer with at least one completed order in
+    the trailing twelve months.
+---
+kind: CoverageStatement
+version: v1
+definition:
+  name: coverage
+  reviewed: true
+  text: >-
+    Every answer must state the population it represents (for example,
+    the region and the period the figures cover) alongside the figure
+    itself, rather than leaving the reader to infer it.

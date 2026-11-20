@@ -1,0 +1,33 @@
+kind: Relationship
+version: v1
+definition:
+  name: Customer
+  sourceType: Order
+  target:
+    model:
+      name: Customers
+      relationshipType: Object
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: customerId
+      target:
+        modelField:
+          - fieldName: id
+---
+kind: Relationship
+version: v1
+definition:
+  name: Orders
+  sourceType: Customer
+  target:
+    model:
+      name: Orders
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: id
+      target:
+        modelField:
+          - fieldName: customerId

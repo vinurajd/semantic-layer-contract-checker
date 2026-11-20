@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Machine-Consumption Contract Scorecard — northwind_analytics</title>
+<style>
+body { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+       margin: 2rem auto; max-width: 880px; padding: 0 1rem; color: #1f2328; }
+h1 { font-size: 1.5rem; }
+table { border-collapse: collapse; width: 100%; }
+th, td { border: 1px solid #d0d7de; padding: 0.6rem; vertical-align: top;
+         text-align: left; }
+th { background: #f6f8fa; }
+td.req { font-weight: 700; white-space: nowrap; }
+.fam { color: #57606a; font-size: 0.85rem; }
+.badge { color: #fff; border-radius: 1em; padding: 0.15em 0.7em;
+         font-size: 0.85rem; white-space: nowrap; }
+ul { margin: 0.4rem 0 0; padding-left: 1.1rem; }
+footer { margin-top: 2rem; color: #57606a; font-size: 0.9rem; }
+</style>
+</head>
+<body>
+<h1>Machine-Consumption Contract Scorecard — northwind_analytics</h1>
+<p>Platform: <strong>dbt</strong> · Supported: <strong>2</strong> · Reduced: <strong>7</strong> · Not documented: <strong>0</strong> · Not assessable: <strong>1</strong></p>
+<table>
+<tr><th>Req</th><th>Requirement and deciding evidence</th><th>Verdict</th></tr>
+<tr><td class='req'>R1</td><td><strong>Enumerability of definitions</strong><br><span class='fam'>Definitions and declared semantics</span><ul><li>6 queryable artifacts enumerated from the project&#x27;s machine-readable surface (3 measure, 3 metric); discovery is a query, not a search through documents.</li></ul></td><td><span class='badge' style='background:#1a7f37'>supported</span></td></tr><tr><td class='req'>R2</td><td><strong>Declared semantics</strong><br><span class='fam'>Definitions and declared semantics</span><ul><li>5/6 queryable artifacts declare all four elements (aggregation, grain, dimensions, time behavior).</li><li>discount_total: missing grain, time behavior.</li></ul></td><td><span class='badge' style='background:#b58900'>reduced</span></td></tr><tr><td class='req'>R3</td><td><strong>Provenance and lineage</strong><br><span class='fam'>Trust signals</span><ul><li>6/6 queryable artifacts carry machine-readable lineage to upstream artifacts.</li><li>2 upstream source(s) declared in the project.</li><li>Underlying models with lineage: 3/3.</li></ul></td><td><span class='badge' style='background:#1a7f37'>supported</span></td></tr><tr><td class='req'>R4</td><td><strong>Freshness signals</strong><br><span class='fam'>Trust signals</span><ul><li>1/2 source(s) declare both a loaded-at field and freshness thresholds.</li></ul></td><td><span class='badge' style='background:#b58900'>reduced</span></td></tr><tr><td class='req'>R5</td><td><strong>Query-time access control</strong><br><span class='fam'>Enforcement and the exchange itself</span><ul><li>0/6 queryable artifacts carry an access declaration.</li><li>1 underlying model(s) carry access declarations (authoring surface).</li><li>Configuration evidence only: enforcement at query time against the caller&#x27;s own machine identity is runtime behavior and is not assessable from project files, so this cell cannot be coded supported by a static audit.</li></ul></td><td><span class='badge' style='background:#b58900'>reduced</span></td></tr><tr><td class='req'>R6</td><td><strong>Certification</strong><br><span class='fam'>Trust signals</span><ul><li>2/6 queryable artifacts declare an owner.</li><li>0/6 carry a machine-readable certification or endorsement marker.</li></ul></td><td><span class='badge' style='background:#b58900'>reduced</span></td></tr><tr><td class='req'>R7</td><td><strong>Result contract</strong><br><span class='fam'>Enforcement and the exchange itself</span><ul><li>Units declared: 1/6 artifacts. Grain declared: 5/6. Caveats or usage notes declared: 1/6.</li><li>Scored on project declarations; whether the response payload itself carries units, grain, and caveats is runtime behavior and is not assessable from project files.</li><li><em>Sub-check, coverage statement:</em> not documented: no declaration found that answers state the population they represent.</li></ul></td><td><span class='badge' style='background:#b58900'>reduced</span></td></tr><tr><td class='req'>R8</td><td><strong>Structured rejection</strong><br><span class='fam'>Enforcement and the exchange itself</span><ul><li>Structured rejection is runtime behavior of the query surface: whether an invalid request receives an error an agent can act on cannot be evidenced by project files. Per the audit&#x27;s honesty rule, this cell is reported as not assessable and is never silently scored; silence is not coded as refusal or as support.</li></ul></td><td><span class='badge' style='background:#5f6368'>not assessable</span></td></tr><tr><td class='req'>R9</td><td><strong>Deprecation and versioning signals</strong><br><span class='fam'>Identity and lifecycle</span><ul><li>0/6 queryable artifacts carry a deprecation signal; 0/6 carry a version field.</li><li>1 underlying model(s) carry a deprecation signal, one level below the artifacts a consumer queries; that locus caps this cell at reduction.</li></ul></td><td><span class='badge' style='background:#b58900'>reduced</span></td></tr><tr><td class='req'>R10</td><td><strong>Stable identity</strong><br><span class='fam'>Identity and lifecycle</span><ul><li>0/6 queryable artifacts carry a stable identifier distinct from their name.</li><li>6 artifact(s) have a display label that diverges from the name a consumer must store.</li><li>Identity is name-based: a rename is a breaking change discoverable only when stored references fail.</li></ul></td><td><span class='badge' style='background:#b58900'>reduced</span></td></tr>
+</table>
+<footer>
+<p>Framework: the machine-consumption contract from &quot;The Machine-Consumption Contract of Business Intelligence: A Documentation Audit of Six Semantic Layers&quot; by Vinuraj Devaraj.</p>
+<p>Semantic Layer Contract Checker · Created by Vinuraj Devaraj, Independent Researcher</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,109 @@
+name: "Semantic Layer Contract Checker"
+description: >-
+  Audit a dbt manifest or PromptQL / Hasura DDN metadata directory
+  against the ten-requirement machine-consumption contract (R1 to R10)
+  and publish the scorecard as a job summary and a build artifact.
+author: "Vinuraj Devaraj"
+branding:
+  icon: "check-square"
+  color: "green"
+
+inputs:
+  platform:
+    description: "Platform to audit: dbt or promptql."
+    required: true
+  input:
+    description: >-
+      Path, relative to the workspace, to the dbt manifest.json file
+      (or project directory) or to the PromptQL / DDN metadata
+      directory.
+    required: true
+  format:
+    description: "Scorecard format: md, html, or json."
+    required: false
+    default: "md"
+  output:
+    description: "Scorecard file to write, relative to the workspace."
+    required: false
+    default: "contract-scorecard.md"
+  strict:
+    description: >-
+      Fail the build when any requirement is coded not documented.
+    required: false
+    default: "false"
+  upload-artifact:
+    description: "Upload the scorecard as a workflow artifact."
+    required: false
+    default: "true"
+  artifact-name:
+    description: "Name of the uploaded artifact."
+    required: false
+    default: "contract-scorecard"
+  comment-on-pr:
+    description: >-
+      Post the scorecard as a pull request comment. Markdown format
+      only; uses the gh CLI with the workflow token, so the job needs
+      pull-requests: write permission.
+    required: false
+    default: "false"
+  python-version:
+    description: "Python version used to run the checker."
+    required: false
+    default: "3.12"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: Install the checker
+      shell: bash
+      run: python -m pip install "${{ github.action_path }}"
+
+    - name: Run the contract check
+      shell: bash
+      env:
+        CC_PLATFORM: ${{ inputs.platform }}
+        CC_INPUT: ${{ inputs.input }}
+        CC_FORMAT: ${{ inputs.format }}
+        CC_OUTPUT: ${{ inputs.output }}
+        CC_STRICT: ${{ inputs.strict }}
+      run: |
+        args=(check --platform "$CC_PLATFORM" --input "$CC_INPUT"
+              --format "$CC_FORMAT" --out "$CC_OUTPUT")
+        if [ "$CC_STRICT" = "true" ]; then
+          args+=(--strict)
+        fi
+        contractcheck "${args[@]}"
+
+    # The steps below run even when the check step fails on --strict,
+    # so the scorecard is still published before the build goes red.
+    - name: Publish the scorecard to the job summary
+      if: always() && inputs.format == 'md'
+      shell: bash
+      env:
+        CC_OUTPUT: ${{ inputs.output }}
+      run: cat "$CC_OUTPUT" >> "$GITHUB_STEP_SUMMARY"
+
+    - name: Upload the scorecard artifact
+      if: always() && inputs.upload-artifact == 'true'
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ inputs.artifact-name }}
+        path: ${{ inputs.output }}
+
+    - name: Comment on the pull request
+      if: >-
+        always() && inputs.comment-on-pr == 'true'
+        && inputs.format == 'md'
+        && github.event_name == 'pull_request'
+      shell: bash
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CC_OUTPUT: ${{ inputs.output }}
+      run: >-
+        gh pr comment "${{ github.event.pull_request.number }}"
+        --body-file "$CC_OUTPUT"

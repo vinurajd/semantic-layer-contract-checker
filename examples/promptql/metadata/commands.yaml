@@ -1,0 +1,13 @@
+kind: Command
+version: v1
+definition:
+  name: TopCustomersByRevenue
+  outputType: "[Customer]"
+  description: Returns the customers with the highest total revenue.
+  arguments:
+    - name: limit
+      type: Int
+      description: Maximum number of customers to return.
+  source:
+    dataConnector: shopdb
+    command: top_customers_by_revenue

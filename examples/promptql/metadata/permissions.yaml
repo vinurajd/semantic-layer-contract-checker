@@ -1,0 +1,20 @@
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Orders
+  permissions:
+    - role: analyst
+      select:
+        filter:
+          region:
+            _is_null: false
+    - role: admin
+      select:
+        filter: {}
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: TopCustomersByRevenue
+  permissions:
+    - role: analyst

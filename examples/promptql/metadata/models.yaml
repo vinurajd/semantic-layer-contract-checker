@@ -1,0 +1,24 @@
+kind: Model
+version: v1
+definition:
+  name: Orders
+  objectType: Order
+  description: All completed orders, queryable by agents and analysts.
+  aggregate:
+    aggregateFunctionDefinitions:
+      - functionName: sum
+        fieldName: totalAmount
+      - functionName: _count
+  source:
+    dataConnector: shopdb
+    collection: orders
+---
+kind: Model
+version: v1
+definition:
+  name: Customers
+  objectType: Customer
+  description: All customer accounts.
+  source:
+    dataConnector: shopdb
+    collection: customers

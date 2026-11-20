@@ -1,0 +1,17 @@
+{
+  "name": "semantic-layer-contract-checker",
+  "version": "1.0.0",
+  "description": "Audit a semantic-layer project (dbt manifest or PromptQL / Hasura DDN metadata) against the ten-requirement machine-consumption contract, with a scorecard in the contract's four-value vocabulary.",
+  "author": {
+    "name": "Vinuraj Devaraj"
+  },
+  "license": "MIT",
+  "keywords": [
+    "semantic-layer",
+    "dbt",
+    "promptql",
+    "data-contracts",
+    "machine-consumption",
+    "bi-governance"
+  ]
+}

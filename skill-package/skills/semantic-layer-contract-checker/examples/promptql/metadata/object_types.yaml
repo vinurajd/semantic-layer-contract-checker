@@ -1,0 +1,34 @@
+kind: ObjectType
+version: v1
+definition:
+  name: Order
+  description: A completed customer order.
+  fields:
+    - name: id
+      type: Int!
+      description: Unique order identifier.
+    - name: totalAmount
+      type: Numeric!
+      description: Order total in USD.
+    - name: region
+      type: String
+      description: Sales region the order belongs to.
+    - name: orderedAt
+      type: Timestamptz
+      description: When the order was placed.
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Customer
+  description: A customer account.
+  fields:
+    - name: id
+      type: Int!
+      description: Unique customer identifier.
+    - name: name
+      type: String
+      description: Customer display name.
+    - name: segment
+      type: String
+      description: Customer segment (retail, wholesale, enterprise).

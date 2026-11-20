@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "contractcheck"
+version = "0.1.0"
+description = "Audit a semantic-layer project against the machine-consumption contract (R1 to R10)."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Vinuraj Devaraj" }]
+requires-python = ">=3.10"
+dependencies = ["PyYAML>=6.0"]
+
+[project.optional-dependencies]
+mcp = ["mcp>=1.0"]
+
+[project.scripts]
+contractcheck = "contractcheck.cli:main"
+contractcheck-mcp = "contractcheck.mcp_server:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
